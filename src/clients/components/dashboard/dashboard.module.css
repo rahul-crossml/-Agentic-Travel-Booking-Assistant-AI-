@@ -1,0 +1,16 @@
+.dashboardHeader {
+  --tw-gradient-to: var(--color-teal-500);
+  --tw-gradient-from: var(--color-sky-500);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-position: to right;
+
+  background-image: linear-gradient(
+    var(--tw-gradient-position),
+    var(--tw-gradient-from),
+    var(--tw-gradient-to)
+  );
+}
+
+input::placeholder {
+  color: #000;
+}

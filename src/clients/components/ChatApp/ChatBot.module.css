@@ -35,12 +35,22 @@
 }
 
 .chatHeader {
-  background-color: #0068ff;
+  /* background-color: #0068ff; */
   color: white;
   padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+   --tw-gradient-to: var(--color-teal-500);
+    --tw-gradient-from: var(--color-sky-500);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-position: to right;
+    
+    background-image: linear-gradient(
+      var(--tw-gradient-position),
+      var(--tw-gradient-from),
+      var(--tw-gradient-to)
+    );
 }
 
 .closeButton {
@@ -125,3 +135,18 @@
     transform: translate(-50%, -50%);
     z-index: 9999;
 }   
+
+@layer utilities {
+  .custom-gradient {
+    --tw-gradient-to: var(--color-teal-500);
+    --tw-gradient-from: var(--color-sky-500);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-position: to right;
+    
+    background-image: linear-gradient(
+      var(--tw-gradient-position),
+      var(--tw-gradient-from),
+      var(--tw-gradient-to)
+    );
+  }
+}

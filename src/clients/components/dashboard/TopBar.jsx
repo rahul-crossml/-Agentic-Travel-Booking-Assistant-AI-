@@ -3,10 +3,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
+import styles from './dashboard.module.css'
 
 const TopBar = ({ onMenuClick }) => {
   return (
-    <header className="bg-white border-b border-gray-200 px-6 py-4">
+    <header className={`bg-white border-b border-gray-200 px-6 py-4 ${styles.dashboardHeader}`}>
       <div className="flex items-center justify-between">
         {/* Left section */}
         <div className="flex items-center space-x-4">
@@ -19,18 +20,19 @@ const TopBar = ({ onMenuClick }) => {
 
           <div className="hidden md:flex items-center space-x-4">
             <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-            <span className="text-gray-500">Welcome back, Sarah!</span>
+            <span style={{ color: '#fff' }} className="text-gray-500">Welcome back, Sarah!</span>
           </div>
         </div>
 
         {/* Center search */}
         <div className="flex-1 max-w-md mx-4">
           <div className="relative">
-            <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" fontSize="small" />
+            <SearchIcon sx={{ color: '#000' }} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" fontSize="small" />
             <input
               type="text"
               placeholder="Search destinations, bookings..."
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+              style={{ '::placeholder': { color: '#000' } }}
             />
           </div>
         </div>
