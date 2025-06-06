@@ -99,15 +99,29 @@ const ChatBot = () => {
               placeholder="Type here to chat..."
               style={{ color: "black" }}
             />
-            <button className={styles.sendButtonContainer} onClick={handleSendMessage}>Send 
-                <i class="fa-solid fa-paper-plane"></i>
+            <button
+              className={styles.sendButtonContainer}
+              onClick={handleSendMessage}
+            >
+              Send
+              <i class="fa-solid fa-paper-plane"></i>
             </button>
           </div>
         </div>
       ) : (
-        <button className={styles.chatButton} onClick={() => setIsOpen(true)}>
-          Ask Harry, your AI Assistant
-        </button>
+        <div>
+            <div className={styles.imageContainer2}>
+              <Image
+                src="/robot-ai-technology-character-icon.avif"
+                alt="AI Bot"
+                width={50}
+                height={50}
+              />
+            </div>
+          <button className={styles.chatButton} onClick={() => setIsOpen(true)}>
+            Ask Banti, your AI Assistant
+          </button>
+        </div>
       )}
     </div>
   );

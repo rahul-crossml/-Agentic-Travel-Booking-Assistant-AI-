@@ -19,7 +19,7 @@
 }
 
 .chatButton:hover {
-  background-color: #b51d0d;
+  background-color: #0069A8;
   transform: translateY(-2px);
 }
 
@@ -115,3 +115,13 @@
     align-items: center;
     gap: 0.5rem;
 }
+
+.imageContainer2 {
+  position: absolute;
+    top: -0;
+    left: -0;
+    border-radius: 50%;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}   
