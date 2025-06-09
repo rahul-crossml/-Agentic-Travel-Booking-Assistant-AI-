@@ -1,14 +1,10 @@
 "use client";
 
 import { useState } from "react";
-
-import { ArrowRightLeft, ChevronDown } from "lucide-react";
 import axios from "axios";
-import { Button, Card } from "@mui/material";
+import { Button } from "@mui/material";
 
-// interface FlightSearchProps {
-//   handleFlightData: (data: any) => void
-// }
+
 
 const FlightSearch = ({ handleFlightData }) => {
   const [tripType, setTripType] = useState("one-way");
@@ -24,26 +20,11 @@ const FlightSearch = ({ handleFlightData }) => {
   );
   const [outboundDate, setOutboundDate] = useState("2025-06-08");
   const [returnDate, setReturnDate] = useState("2025-06-30");
-  const [travellers, setTravellers] = useState("1 Traveller");
-  const [travelClass, setTravelClass] = useState("Economy/Premium Economy");
-  const [fareType, setFareType] = useState("regular");
   const [flights, setFlights] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const swapAirports = () => {
-    const tempCode = departure;
-    const tempCity = departureCity;
-    const tempAirport = departureAirport;
-
-    setDeparture(arrival);
-    setDepartureCity(arrivalCity);
-    setDepartureAirport(arrivalAirport);
-
-    setArrival(tempCode);
-    setArrivalCity(tempCity);
-    setArrivalAirport(tempAirport);
-  };
+ 
 
   const handleSearch = async () => {
     if (
@@ -63,14 +44,7 @@ const FlightSearch = ({ handleFlightData }) => {
     try {
       const response = await axios.get(
         `http://localhost:5000/api/smart-search`,
-        {
-          // params: {
-          //   departure,
-          //   arrival,
-          //   outbound_date: outboundDate,
-          //   return_date: tripType === "round-trip" ? returnDate : undefined,
-          // },
-        }
+        {}
       );
       setFlights(response.data);
       handleFlightData(response.data);
