@@ -17,11 +17,27 @@ import StarIcon from "@mui/icons-material/Star";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import PublicIcon from "@mui/icons-material/Public";
 import { useNavigate } from "@/utils/navigate";
+import { Backdrop, CircularProgress } from "@mui/material";
+
+export const validateCredentials = (email, password) => {
+  // Find user with matching email
+  const user = validUsers.find(user => 
+    user.username.toLowerCase() === email.toLowerCase()
+  );
+
+  // If user found and password matches, return true
+  if (user && user.password === password) {
+    return true;
+  }
+
+  return false;
+};
 
 export default function TravelSignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showBackdrop, setShowBackdrop] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -72,8 +88,14 @@ export default function TravelSignupPage() {
   };
 
   const handleSubmit = (e) => {
+    console.log(e)
+    setShowBackdrop(true)
     e.preventDefault();
-    console.log("Signup attempt with:", formData);
+    setTimeout(() => {
+      navigate("/dashboard");
+    setShowBackdrop(false)
+
+    }, 1000);
   };
 const navigate = useNavigate();
   const handleNavigate = () => {
@@ -81,7 +103,11 @@ const navigate = useNavigate();
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50! via-white! to-cyan-50! relative overflow-hidden">
+    <>
+      <Backdrop open={showBackdrop} sx={{ zIndex: 1300, backgroundColor: 'rgba(0, 0, 0, 0.5)' }} >
+        <CircularProgress color="inherit" />
+        </Backdrop>
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50! via-white! to-cyan-50! relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20! to-purple-400/20! rounded-full blur-3xl animate-pulse"></div>
@@ -303,10 +329,10 @@ const navigate = useNavigate();
               {/* Login Link */}
               <div className="mt-8 text-center">
                 <p className="text-gray-600!">
-                  Already have an account?{" "}
-                  <button className="text-blue-600! hover:text-blue-700! font-semibold hover:underline transition-colors" onClick={handleNavigate}>
+                  {/* Already have an account?{" "} */}
+                  {/* <button className="text-blue-600! hover:text-blue-700! font-semibold hover:underline transition-colors" onClick={handleNavigate}>
                     Sign Up
-                  </button>
+                  </button> */}
                 </p>
               </div>
 
@@ -328,5 +354,6 @@ const navigate = useNavigate();
         </div>
       </div>
     </div>
+    </>
   );
 }
