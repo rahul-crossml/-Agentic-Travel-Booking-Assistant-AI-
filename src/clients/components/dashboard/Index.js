@@ -1,5 +1,4 @@
-
-"use client";   
+"use client";
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
@@ -13,6 +12,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import FlightSearch from "./FlightSearch";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,10 +21,18 @@ function App() {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const [storeFlightData, setStoreFlightData] = useState(null);
+
+  const handleFlightData = (data) => {
+    setStoreFlightData(data);
+  };
+
+  console.log(storeFlightData?.airports[0]?.departure[0]?.airport?.name);
+
   const destinations = [
     {
       image:
-        "https://images.pexels.com/photos/161212/santorini-travel-greece-sunset-161212.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://www.costacruises.com/content/dam/costa/inventory-assets/ports/JTR/jtr-santorini-port-1.jpg",
       destination: "Santorini",
       country: "Greece",
       price: "$899",
@@ -59,6 +67,8 @@ function App() {
 
       <div className="">
         <TopBar onMenuClick={toggleSidebar} />
+
+        <FlightSearch handleFlightData={handleFlightData} />
 
         <main className="p-6">
           {/* Stats Cards */}
@@ -120,7 +130,9 @@ function App() {
                   departureTime="10:30"
                   arrivalTime="14:45+1"
                   date="Dec 15, 2024"
-                  airline="Japan Airlines"
+                  airline={
+                    storeFlightData?.airports[0]?.departure[0]?.airport?.name
+                  }
                   flightNumber="JL004"
                   gate="B12"
                   status="On Time"
